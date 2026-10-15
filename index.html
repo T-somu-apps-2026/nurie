@@ -20,7 +20,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font);margin:0;
   box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .app{height:100%;display:flex;flex-direction:column;gap:10px;padding-block:10px;max-width:640px;margin:0 auto;box-sizing:border-box}
 .pics{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.pics button{width:58px;height:58px;border-radius:18px;border:3px solid var(--line);background:var(--tab);
+.pics{gap:6px}
+.pics button{width:50px;height:50px;border-radius:15px;border:3px solid var(--line);background:var(--tab);
   display:grid;place-items:center;padding:4px;cursor:pointer;box-shadow:0 4px 0 var(--shadow)}
 .pics button[aria-pressed="true"]{background:var(--tab-on);transform:translateY(2px);box-shadow:0 2px 0 var(--shadow)}
 .pics svg{width:100%;height:100%}
@@ -31,8 +32,10 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font);margin:0;
 .r.pop{animation:pop .3s ease}
 @keyframes pop{50%{transform:scale(1.06)}}
 .r{transform-box:fill-box;transform-origin:center}
-.palette{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
-.palette button{aspect-ratio:1;max-width:100%;border-radius:50%;border:4px solid var(--line);cursor:pointer;
+.r.bg{stroke:none}
+.stage{transition:background .2s}
+.palette{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}
+.palette button{aspect-ratio:1;max-width:100%;border-radius:50%;border:3px solid var(--line);cursor:pointer;padding:0;
   box-shadow:0 4px 0 rgba(0,0,0,.18);position:relative}
 .palette button[aria-pressed="true"]{transform:scale(1.12);box-shadow:0 0 0 5px var(--tab-on)}
 .palette button.erase{background:#fff;font-size:26px;display:grid;place-items:center;color:var(--ink);font-family:var(--font)}
@@ -95,9 +98,54 @@ ice:`<svg viewBox="0 0 300 300">
  <circle ${R} cx="150" cy="125" r="50"/>
  <circle ${R} cx="150" cy="70" r="40"/>
  <circle ${R} cx="150" cy="25" r="16"/>
- <circle ${R} cx="55" cy="60" r="20"/><circle ${R} cx="250" cy="90" r="22"/></svg>`
+ <circle ${R} cx="55" cy="60" r="20"/><circle ${R} cx="250" cy="90" r="22"/></svg>`,
+cat:`<svg viewBox="0 0 300 300">
+ <ellipse ${R} cx="150" cy="262" rx="85" ry="38"/>
+ <polygon ${R} points="65,120 82,35 135,85"/><polygon ${R} points="235,120 218,35 165,85"/>
+ <ellipse ${R} cx="150" cy="155" rx="98" ry="82"/>
+ <polygon ${R} points="82,95 90,60 115,85"/><polygon ${R} points="218,95 210,60 185,85"/>
+ <circle cx="115" cy="145" r="11" fill="#3b2a20"/><circle cx="185" cy="145" r="11" fill="#3b2a20"/>
+ <polygon ${R} points="138,168 162,168 150,182"/>
+ <g stroke="#3b2a20" stroke-width="4" stroke-linecap="round" pointer-events="none">
+  <line x1="40" y1="165" x2="100" y2="175"/><line x1="40" y1="195" x2="100" y2="188"/>
+  <line x1="260" y1="165" x2="200" y2="175"/><line x1="260" y1="195" x2="200" y2="188"/></g></svg>`,
+butterfly:`<svg viewBox="0 0 300 300">
+ <ellipse ${R} cx="92" cy="110" rx="62" ry="50" transform="rotate(-20 92 110)"/>
+ <ellipse ${R} cx="208" cy="110" rx="62" ry="50" transform="rotate(20 208 110)"/>
+ <ellipse ${R} cx="105" cy="200" rx="45" ry="38"/><ellipse ${R} cx="195" cy="200" rx="45" ry="38"/>
+ <circle ${R} cx="85" cy="105" r="18"/><circle ${R} cx="215" cy="105" r="18"/>
+ <circle ${R} cx="105" cy="205" r="13"/><circle ${R} cx="195" cy="205" r="13"/>
+ <g stroke="#3b2a20" stroke-width="5" fill="none" stroke-linecap="round" pointer-events="none">
+  <path d="M143 70 Q125 30 105 28"/><path d="M157 70 Q175 30 195 28"/></g>
+ <ellipse ${R} cx="150" cy="160" rx="15" ry="80"/>
+ <circle ${R} cx="150" cy="72" r="20"/></svg>`,
+rocket:`<svg viewBox="0 0 300 300">
+ <polygon ${R} points="40,50 46,64 60,70 46,76 40,90 34,76 20,70 34,64"/>
+ <polygon ${R} points="255,95 260,107 272,112 260,117 255,129 250,117 238,112 250,107"/>
+ <path ${R} d="M122 205 Q150 295 178 205 Z"/>
+ <polygon ${R} points="108,145 62,215 108,200"/><polygon ${R} points="192,145 238,215 192,200"/>
+ <path ${R} d="M150 25 Q205 80 195 205 L105 205 Q95 80 150 25 Z"/>
+ <circle ${R} cx="150" cy="115" r="26"/></svg>`,
+cake:`<svg viewBox="0 0 300 300">
+ <ellipse ${R} cx="150" cy="255" rx="125" ry="20"/>
+ <rect ${R} x="60" y="170" width="180" height="82" rx="12"/>
+ <rect ${R} x="95" y="110" width="110" height="64" rx="12"/>
+ <rect ${R} x="143" y="58" width="14" height="52" rx="4"/>
+ <path ${R} d="M150 22 Q166 42 150 56 Q134 42 150 22 Z"/>
+ <circle ${R} cx="115" cy="104" r="13"/><circle ${R} cx="185" cy="104" r="13"/>
+ <circle ${R} cx="95" cy="210" r="12"/><circle ${R} cx="150" cy="210" r="12"/><circle ${R} cx="205" cy="210" r="12"/></svg>`,
+turtle:`<svg viewBox="0 0 300 300">
+ <rect ${R} x="10" y="250" width="280" height="36" rx="14"/>
+ <ellipse ${R} cx="90" cy="222" rx="22" ry="28"/><ellipse ${R} cx="210" cy="222" rx="22" ry="28"/>
+ <polygon ${R} points="48,180 18,198 52,198"/>
+ <circle ${R} cx="252" cy="165" r="30"/><circle cx="262" cy="157" r="6" fill="#3b2a20"/>
+ <path ${R} d="M50 195 Q50 85 150 85 Q250 85 250 195 Z"/>
+ <polygon ${R} points="128,115 172,115 190,150 172,185 128,185 110,150"/>
+ <polygon ${R} points="72,190 82,135 105,150 112,190"/><polygon ${R} points="228,190 218,135 195,150 188,190"/>
+ <rect ${R} x="45" y="188" width="210" height="20" rx="10"/></svg>`
 };
-const COLORS=['#ff5a5a','#ff9f2e','#ffd93b','#7bd35a','#3fbf9f','#4aa8ff','#8a6bff','#ff7fc6','#a0663b'];
+const COLORS=['#ff4d4d','#ff9f2e','#ffd93b','#c4e84a','#4fbf5a','#2fb5a3','#7fd3ff','#3a6fe0','#8a6bff','#ff8fcf','#a0663b','#4a4a4a'];
+const ORDER=Object.keys(PICS);let nextTimer=null;
 const pics=document.getElementById('pics'),stage=document.getElementById('stage'),pal=document.getElementById('palette');
 let color=COLORS[0],cur='fish',ac=null;
 function beep(){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain();
@@ -106,19 +154,26 @@ function beep(){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)(
 Object.keys(PICS).forEach(k=>{const b=document.createElement('button');b.type='button';b.id='pic-'+k;b.innerHTML=PICS[k];b.setAttribute('aria-label',k);
  b.onclick=()=>show(k);pics.appendChild(b)});
 [...COLORS,'erase'].forEach((c,i)=>{const b=document.createElement('button');b.type='button';b.id='col-'+i;
- if(c==='erase'){b.className='erase';b.textContent='けす';b.style.fontSize='16px';b.style.fontWeight='800'}else b.style.background=c;
+ if(c==='erase'){b.className='erase';b.textContent='けす';b.style.fontSize='13px';b.style.fontWeight='800'}else b.style.background=c;
  b.setAttribute('aria-label',c==='erase'?'けしゴム':'いろ'+(i+1));
  b.onclick=()=>{color=c==='erase'?'#fff':c;[...pal.children].forEach(x=>x.setAttribute('aria-pressed',x===b));beep()};pal.appendChild(b)});
 pal.children[0].setAttribute('aria-pressed','true');
-function show(k){cur=k;[...pics.children].forEach(b=>b.setAttribute('aria-pressed',b.id==='pic-'+k));
+function paintBg(c){const bg=stage.querySelector(':scope>svg .bg');if(bg)bg.setAttribute('fill',c);stage.style.background=c}
+function show(k){cur=k;clearTimeout(nextTimer);[...pics.children].forEach(b=>b.setAttribute('aria-pressed',b.id==='pic-'+k));
  stage.querySelector(':scope>svg')?.remove();stage.insertAdjacentHTML('afterbegin',PICS[k]);
- document.getElementById('msg').hidden=true;
- stage.querySelectorAll('.r').forEach(el=>el.addEventListener('pointerdown',e=>{e.preventDefault();el.setAttribute('fill',color);
-  el.classList.remove('pop');void el.getBBox();el.classList.add('pop');beep();check()}))}
-function check(){const all=[...stage.querySelectorAll(':scope>svg .r')];if(all.every(r=>r.getAttribute('fill')!=='#fff')&&document.getElementById('msg').hidden){
- document.getElementById('msg').hidden=false;const y=document.getElementById('yay');y.innerHTML='';
- for(let i=0;i<18;i++){const s=document.createElement('span');s.textContent=['⭐','🌟','💖','🎈'][i%4];s.style.left=Math.random()*90+'%';s.style.animationDelay=Math.random()*.6+'s';y.appendChild(s)}}}
-document.getElementById('reset').onclick=()=>{stage.querySelectorAll('.r').forEach(r=>r.setAttribute('fill','#fff'));document.getElementById('msg').hidden=true};
+ const svg=stage.querySelector(':scope>svg');
+ svg.insertAdjacentHTML('afterbegin','<rect class="r bg" x="-200" y="-200" width="700" height="700" fill="#fff"/>');
+ stage.style.background='#fff';document.getElementById('msg').hidden=true;document.getElementById('yay').innerHTML='';
+ svg.querySelectorAll('.r').forEach(el=>el.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();
+  if(el.classList.contains('bg')){paintBg(color)}else{el.setAttribute('fill',color);el.classList.remove('pop');void el.getBBox();el.classList.add('pop')}
+  beep();check()}))}
+stage.addEventListener('pointerdown',e=>{if(e.target===stage){paintBg(color);beep()}});
+function check(){const parts=[...stage.querySelectorAll(':scope>svg .r:not(.bg)')];const msg=document.getElementById('msg');
+ if(parts.every(r=>r.getAttribute('fill')!=='#fff')&&msg.hidden){
+ msg.hidden=false;const y=document.getElementById('yay');y.innerHTML='';
+ for(let i=0;i<18;i++){const s=document.createElement('span');s.textContent=['⭐','🌟','💖','🎈'][i%4];s.style.left=Math.random()*90+'%';s.style.animationDelay=Math.random()*.6+'s';y.appendChild(s)}
+ nextTimer=setTimeout(()=>show(ORDER[(ORDER.indexOf(cur)+1)%ORDER.length]),4000)}}
+document.getElementById('reset').onclick=()=>{clearTimeout(nextTimer);stage.querySelectorAll(':scope>svg .r').forEach(r=>r.setAttribute('fill','#fff'));stage.style.background='#fff';document.getElementById('msg').hidden=true;document.getElementById('yay').innerHTML=''};
 // BGM: きらきら星 → かえるのうた を交互にくりかえし（オルゴール風）
 const N={C:523.25,D:587.33,E:659.25,F:698.46,G:783.99,A:880,_:0};
 const SONGS=[
